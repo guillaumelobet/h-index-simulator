@@ -1,5 +1,18 @@
 # h-index simulator
 
+
+## How to run it
+
+
+Run the following command in your R console:
+
+	library(shiny)
+	shiny::runGitHub("guillaumelobet/h-index-simulator", "guillaumelobet") 
+
+
+## How it works
+
+
 The simulator in itself is quite simple and needs only a couple of inputs:
 
 - the average number of paper you publish per year + the standard deviation

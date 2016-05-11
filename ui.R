@@ -26,35 +26,37 @@ shinyUI(fluidPage(
                   value = 2011),
       
       sliderInput("n_sim",
-                  "Number of simulation:",
+                  "Number of repeats:",
                   min = 1,
                   max = 50,
                   value = 10),
       
-      checkboxInput("autocite", label = "I love my paper. AUTOCITE MANIA!", value = F),
+      checkboxInput("autocite", label = "I LOVE my papers. AUTOCITE MANIA!", value = F),
       
       tags$hr(),
       
       sliderInput("avg_paper_per_year",
-                  "Average number of papers per year:",
+                  "Productivity (papers / year)",
                   min = 1,
                   max = 10,
                   value = 3),
       
-      sliderInput("sd_paper_per_year",
-                  "Deviation number of papers per year:",
-                  min = 0,
-                  max = 10,
-                  value = 1),
-      
       sliderInput("avg_IF",
-                  "Average Impact Factor:",
+                  "Quality (citations / paper / year)",
                   min = 1,
                   max = 40,
                   value = 7),
       
+      tags$hr(),
+      
+      sliderInput("sd_paper_per_year",
+                  "Productivity standard deviation",
+                  min = 0,
+                  max = 10,
+                  value = 1),
+      
       sliderInput("sd_IF",
-                  "Deviation Impact Factor:",
+                  "Quality standard deviation",
                   min = 1,
                   max = 40,
                   value = 2)

@@ -73,25 +73,43 @@ for(auto in autocite_mania){
   dataList[[length(dataList)+1]] <- if_space
 }
 
-write.csv(dataList[[1]], "data_sim_no_auto.csv")
-write.csv(dataList[[2]], "data_sim_auto.csv")
+write.csv(dataList[[1]], "data/data_sim_no_auto.csv")
+write.csv(dataList[[2]], "data/data_sim_auto.csv")
 
 
+rs1 <- read.csv("data/data_sim_no_auto.csv")
+rs2 <- read.csv("data/data_sim_auto.csv")
+max_year <- max(rs1$years, rs2$years)
+min_year <- min(rs1$years, rs2$years)
+
+dataList <- list(rs1, rs2)
 # plots
 plotList <- list()
 for(i in 1:length(dataList)){
   rs <- dataList[[i]]
   rs <- rs[rs$papers >= 1,]
-  names(rs) <- c("x", "y", "z")
+  names(rs) <- c("id","x", "y", "z")
   g <- ggplot(rs, aes(x, y, z = z)) + 
     geom_tile(aes(fill = z)) + stat_contour(colour="#00000050", bins=20) + 
     scale_fill_gradientn("Number of years",colours=rainbow(10),limits=c(min_year, max_year)) +
     #scale_fill_gradientn(colours=rainbow(10)) +
     theme_classic() +
     xlab("Number of papers / years") + 
-    ylab("Journal Impact Factor") 
+    ylab("Number of citations / paper / years") 
   plotList[[length(plotList)+1]] <- g
 }
+
+rs <- dataList[[1]]
+rs$years <- dataList[[1]]$years - dataList[[2]]$years
+names(rs) <- c("id","x", "y", "z")
+ggplot(rs, aes(x, y, z = z)) + 
+  geom_tile(aes(fill = z)) + stat_contour(colour="#00000050", bins=20) + 
+  scale_fill_gradientn("Number of gained years",colours=rainbow(10)) +
+  #scale_fill_gradientn(colours=rainbow(5)) +
+  theme_classic() +
+  xlab("Number of papers / years") + 
+  ylab("Number of citations / paper / years") 
+
 plotList[[1]]
 plotList[[2]]
 

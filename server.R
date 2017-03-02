@@ -93,7 +93,7 @@ shinyServer(function(input, output) {
     
     df <- data.frame()
     text_plot <- ggplot(df) + geom_point() + xlim(0, 10) + ylim(0, 100) + theme_minimal() +
-      theme(line = element_blank(), text = element_blank(), line = element_blank(), title = element_blank()) + 
+      #theme(line = element_blank(), text = element_blank(), line = element_blank(), title = element_blank()) + 
       annotate("text", x = 5, y = 35, label = answer)+
       annotate("text", x = 5, y = 25, label = answer2)
     
